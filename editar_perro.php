@@ -1,21 +1,4 @@
-<?php
-session_start();
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: index.php");
-    exit;
-}
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "huellitasdb";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
-
-if (!isset($_GET['id'])) {
     header("Location: panel.php");
     exit;
 }
@@ -111,4 +94,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 </body>
-</html>
+</html><?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: index.php");
+    exit;
+}
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "huellitasdb";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+if (!isset($_GET['id'])) {

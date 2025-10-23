@@ -10,6 +10,27 @@
 
    
     <link rel="stylesheet" href="css/inicio.css">
+    <style>
+        .paw-trail {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1000;
+            color: rgba(245, 158, 11, 0.6);
+            font-size: 1.5rem;
+            animation: pawTrail 1s ease-out forwards;
+        }
+
+        @keyframes pawTrail {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5) translateY(-20px);
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -353,7 +374,7 @@
                 <h3>Contacto</h3>
                 <ul>
                     <li>📍 Cra. 82 #47a-65, La América, Medellín, La América, Medellín, Antioquia</li>
-                    <li>📞 (555) 123-4567</li>
+                    <li>📞 3054390551</li>
                     <li>✉️ info@proyectohuellitas.com</li>
                     <li>🕐 Lun-Vie: 9:00 - 18:00</li>
                     <li>🕐 Sáb: 10:00 - 14:00</li>
@@ -429,8 +450,26 @@
         openLoginModal();
     <?php } ?>
 
+    // Mouse trail effect
+    document.addEventListener('mousemove', (e) => {
+        if (Math.random() > 0.95) {
+            createPawTrail(e.clientX, e.clientY);
+        }
+    });
 
-    
+    function createPawTrail(x, y) {
+        const paw = document.createElement('div');
+        paw.className = 'paw-trail';
+        paw.innerHTML = '<i class="fas fa-paw"></i>';
+        paw.style.left = x + 'px';
+        paw.style.top = y + 'px';
+        document.body.appendChild(paw);
+
+        setTimeout(() => {
+            paw.remove();
+        }, 1000);
+    }
+
     </script>
 </body>
 </html>

@@ -297,7 +297,7 @@ $result = $conn->query("SELECT * FROM perros WHERE estado = 'disponible' ORDER B
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <a href="https://wa.me/540303456" target="_blank"
+                <a href="https://wa.me/3054390551" target="_blank"
                    class="group bg-gradient-to-r from-green-500 to-green-600 text-white px-10 py-4 rounded-xl text-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center gap-3">
                     <span class="text-2xl group-hover:animate-bounce">💬</span>
                     WhatsApp
@@ -351,7 +351,7 @@ $result = $conn->query("SELECT * FROM perros WHERE estado = 'disponible' ORDER B
                 <h3>Contacto</h3>
                 <ul>
                     <li>📍 Cra. 82 #47a-65, La América, Medellín, La América, Medellín, Antioquia</li>
-                    <li>📞 (555) 123-4567</li>
+                    <li>📞 3054390551</li>
                     <li>✉️ info@proyectohuellitas.com</li>
                     <li>🕐 Lun-Vie: 9:00 - 18:00</li>
                     <li>🕐 Sáb: 10:00 - 14:00</li>
@@ -494,6 +494,24 @@ $result = $conn->query("SELECT * FROM perros WHERE estado = 'disponible' ORDER B
    .animate-sparkle {
     animation: sparkle 3s ease-in-out infinite;
    }
+   .paw-trail {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+    color: rgba(245, 158, 11, 0.6);
+    font-size: 1.5rem;
+    animation: pawTrail 1s ease-out forwards;
+   }
+   @keyframes pawTrail {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.5) translateY(-20px);
+    }
+   }
   </style>
   <script>
    function buttonPulse(active) {
@@ -503,6 +521,26 @@ $result = $conn->query("SELECT * FROM perros WHERE estado = 'disponible' ORDER B
     } else {
       paw.classList.remove('animate-ping');
     }
+   }
+
+   // Mouse trail effect
+   document.addEventListener('mousemove', (e) => {
+    if (Math.random() > 0.95) {
+     createPawTrail(e.clientX, e.clientY);
+    }
+   });
+
+   function createPawTrail(x, y) {
+    const paw = document.createElement('div');
+    paw.className = 'paw-trail';
+    paw.innerHTML = '<i class="fas fa-paw"></i>';
+    paw.style.left = x + 'px';
+    paw.style.top = y + 'px';
+    document.body.appendChild(paw);
+
+    setTimeout(() => {
+     paw.remove();
+    }, 1000);
    }
   </script>
 </body>
